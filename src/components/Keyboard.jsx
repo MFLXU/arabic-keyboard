@@ -2,6 +2,7 @@ import Key from "./Key";
 import {
   BackspaceIcon,
   ClipboardDocumentIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { useContext, useState, useEffect, useCallback } from "react";
 import { TextContext } from "../App";
@@ -36,10 +37,13 @@ const Keyboard = () => {
   }, [handleKeyboard]);
   return (
     <section className="w-1/2 mx-auto">
-      <div className="flex justify-center items-center gap-1 mb-1">
+      <div className="flex justify-center relative items-center gap-1 mb-1">
         {k5.map((key) => {
           return <Key KeyVal={key} t={1} />;
         })}
+        <div className="flex justify-center right-0 absolute items-center w-14 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md">
+          <MagnifyingGlassIcon className="w-6" />
+        </div>
       </div>
       <div className="flex justify-center items-center gap-1 mb-1">
         {k1.map((key) => {

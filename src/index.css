@@ -14,4 +14,10 @@
   body{
     @apply bg-neutral-900 text-white
   }
+  .clipboard:hover .cb-notice{
+    @apply flex opacity-100
+  }
+  .cb-notice{
+    @apply hidden opacity-0
+  }
 }

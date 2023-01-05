@@ -13,9 +13,15 @@ const Keyboard = () => {
   const k2 = ["ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د"];
   const k3 = ["ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط"];
   const k4 = ["ئ", "ء", "ؤ", "ر", "لا", "ى", "ة", "و", "ز", "ظ"];
+  const k5 = ["ْ", "ّ", "ً", "ٌ", "ٍ", "َ", "ُ", "ِ"];
 
   return (
     <section className="w-1/2 mx-auto">
+      <div className="flex justify-center items-center gap-1 mb-1">
+        {k5.map((key) => {
+          return <Key KeyVal={key} t={1} />;
+        })}
+      </div>
       <div className="flex justify-center items-center gap-1 mb-1">
         {k1.map((key) => {
           return <Key KeyVal={key} />;

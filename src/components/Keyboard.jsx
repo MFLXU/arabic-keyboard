@@ -3,7 +3,7 @@ import {
   BackspaceIcon,
   ClipboardDocumentIcon,
 } from "@heroicons/react/24/outline";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 import { TextContext } from "../App";
 
 const Keyboard = () => {
@@ -14,7 +14,26 @@ const Keyboard = () => {
   const k3 = ["ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط"];
   const k4 = ["ئ", "ء", "ؤ", "ر", "لا", "ى", "ة", "و", "ز", "ظ"];
   const k5 = ["ْ", "ّ", "ً", "ٌ", "ٍ", "َ", "ُ", "ِ"];
-
+  const spaceHandler = () => {
+    setText(text + " ");
+  };
+  const deleteHandler = () => {
+    setText(text.slice(0, -1));
+  };
+  const handleKeyboard = useCallback((event) => {
+    if (event.code === "Space") {
+      spaceHandler();
+    }
+    if (event.code === "Backspace") {
+      deleteHandler();
+    }
+  });
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyboard);
+    return () => {
+      document.removeEventListener("keydown", handleKeyboard);
+    };
+  }, [handleKeyboard]);
   return (
     <section className="w-1/2 mx-auto">
       <div className="flex justify-center items-center gap-1 mb-1">
@@ -42,6 +61,7 @@ const Keyboard = () => {
           return <Key KeyVal={key} />;
         })}
       </div>
+
       <div className="flex justify-center items-center gap-1">
         <div
           onClick={() => {
@@ -59,15 +79,11 @@ const Keyboard = () => {
           </div>
         </div>
         <div
-          onClick={() => {
-            setText(text + " ");
-          }}
+          onClick={spaceHandler}
           className="flex justify-center items-center w-80 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md"
         ></div>
         <div
-          onClick={() => {
-            setText(text.slice(0, -1));
-          }}
+          onClick={deleteHandler}
           className="flex justify-center items-center w-14 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md"
         >
           <BackspaceIcon className="w-6" />

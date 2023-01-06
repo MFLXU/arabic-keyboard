@@ -6,8 +6,8 @@ const Key = ({ KeyVal, t }) => {
   return (
     <div
       onClick={() => {
+        setSearch(text + KeyVal);
         setText(text + KeyVal);
-        setSearch(text);
       }}
       className={
         t === 1

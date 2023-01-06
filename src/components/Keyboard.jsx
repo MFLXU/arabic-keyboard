@@ -10,7 +10,7 @@ import { TextContext } from "../App";
 
 const Keyboard = () => {
   const { text, setText, search, setSearch } = useContext(TextContext);
-  const [notice, setNotice] = useState("Copy to clipboard");
+  const [notice, setNotice] = useState("نسخ النص");
   const k1 = ["ذ", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩", "٠"];
   const k2 = ["ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د"];
   const k3 = ["ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط"];
@@ -36,7 +36,7 @@ const Keyboard = () => {
         >
           <TrashIcon className="w-6" />
           <div className="cb-notice absolute bg-black bg-opacity-50 p-2 w-32 flex justify-center items-center rounded-md top-9 right-5 duration-300 text-sm">
-            <p>Clear Everything</p>
+            <p>امسح كل شيء</p>
           </div>
         </div>
         {k5.map((key) => {
@@ -49,7 +49,7 @@ const Keyboard = () => {
         >
           <MagnifyingGlassIcon className="w-6" />
           <div className="cb-notice absolute bg-black bg-opacity-50 p-2 w-32 flex justify-center items-center rounded-md top-9 -right-20 duration-300 text-sm">
-            <p>Search on Google</p>
+            <p>بحث في جوجل</p>
           </div>
         </a>
       </div>
@@ -78,9 +78,9 @@ const Keyboard = () => {
         <div
           onClick={() => {
             navigator.clipboard.writeText(text);
-            setNotice("Text Copied!");
+            setNotice("تم نسخ النص");
             setTimeout(() => {
-              setNotice("Copy to clipboard");
+              setNotice("نسخ النص");
             }, 3000);
           }}
           className="clipboard border border-neutral-700 flex justify-center relative items-center w-14 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md"

@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { TextContext } from "../App";
 
 const Key = ({ KeyVal, t }) => {
-  const { text, setText } = useContext(TextContext);
+  const { text, setText, search, setSearch } = useContext(TextContext);
   return (
     <div
       onClick={() => {
         setText(text + KeyVal);
+        setSearch(text);
       }}
       className={
         t === 1

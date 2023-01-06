@@ -3,9 +3,10 @@ import { createContext, useContext, useState } from "react";
 export const TextContext = createContext();
 function App() {
   const [text, setText] = useState("");
+  const [search, setSearch] = useState("");
   return (
     <div>
-      <TextContext.Provider value={{ text, setText }}>
+      <TextContext.Provider value={{ text, setText, search, setSearch }}>
         <div className="container ">
           <h1 className="my-10 text-center text-4xl font-bold">
             Arabic Keyboard

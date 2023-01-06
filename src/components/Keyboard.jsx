@@ -8,7 +8,7 @@ import { useContext, useState, useEffect, useCallback } from "react";
 import { TextContext } from "../App";
 
 const Keyboard = () => {
-  const { text, setText } = useContext(TextContext);
+  const { text, setText, search, setSearch } = useContext(TextContext);
   const [notice, setNotice] = useState("Copy to clipboard");
   const k1 = ["ذ", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩", "٠"];
   const k2 = ["ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د"];
@@ -17,6 +17,7 @@ const Keyboard = () => {
   const k5 = ["ْ", "ّ", "ً", "ٌ", "ٍ", "َ", "ُ", "ِ"];
   const spaceHandler = () => {
     setText(text + " ");
+    setSearch(search + "%20");
   };
   const deleteHandler = () => {
     setText(text.slice(0, -1));
@@ -41,9 +42,16 @@ const Keyboard = () => {
         {k5.map((key) => {
           return <Key KeyVal={key} t={1} />;
         })}
-        <div className="flex justify-center right-0 absolute items-center w-14 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md">
+        <a
+          href={"https://www.google.com/search?q=" + search}
+          target="_blank"
+          className="clipboard relative flex justify-center right-0 absolute items-center w-20 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md"
+        >
           <MagnifyingGlassIcon className="w-6" />
-        </div>
+          <div className="cb-notice absolute bg-black bg-opacity-50 p-2 w-32 flex justify-center items-center rounded-md top-9 -right-20 duration-300 text-sm">
+            <p>Search on Google</p>
+          </div>
+        </a>
       </div>
       <div className="flex justify-center items-center gap-1 mb-1">
         {k1.map((key) => {

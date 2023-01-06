@@ -37,7 +37,7 @@ const Keyboard = () => {
     };
   }, [handleKeyboard]);
   return (
-    <section className="w-1/2 mx-auto">
+    <section className="md:w-1/2 mx-auto">
       <div className="flex justify-center relative items-center gap-1 mb-1">
         {k5.map((key) => {
           return <Key KeyVal={key} t={1} />;

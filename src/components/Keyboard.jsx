@@ -3,6 +3,7 @@ import {
   BackspaceIcon,
   ClipboardDocumentIcon,
   MagnifyingGlassIcon,
+  TrashIcon,
 } from "@heroicons/react/24/outline";
 import { useContext, useState, useEffect, useCallback } from "react";
 import { TextContext } from "../App";
@@ -22,23 +23,22 @@ const Keyboard = () => {
   const deleteHandler = () => {
     setText(text.slice(0, -1));
   };
-  const handleKeyboard = useCallback((event) => {
-    if (event.code === "Space") {
-      spaceHandler();
-    }
-    if (event.code === "Backspace") {
-      deleteHandler();
-    }
-  });
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyboard);
-    return () => {
-      document.removeEventListener("keydown", handleKeyboard);
-    };
-  }, [handleKeyboard]);
+  const trashHandler = () => {
+    setText("");
+    setSearch("");
+  };
   return (
     <section className="md:w-1/2 mx-auto">
       <div className="flex justify-center relative items-center gap-1 mb-1">
+        <div
+          onClick={trashHandler}
+          className="clipboard flex justify-center relative items-center w-14 h-8 cursor-pointer text-xl font-medium bg-neutral-800 active:scale-90 hover:bg-neutral-700 duration-300 rounded-md"
+        >
+          <TrashIcon className="w-6" />
+          <div className="cb-notice absolute bg-black bg-opacity-50 p-2 w-32 flex justify-center items-center rounded-md top-9 right-5 duration-300 text-sm">
+            <p>Clear Everything</p>
+          </div>
+        </div>
         {k5.map((key) => {
           return <Key KeyVal={key} t={1} />;
         })}
